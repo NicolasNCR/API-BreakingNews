@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import connectDatabase from './database/db.js';
 
 // Settings
-dotenv.config()
+dotenv.config();
 
 // Routes
 import userRoute from './routes/user.route.js';
