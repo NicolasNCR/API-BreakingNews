@@ -1,18 +1,22 @@
 {
   "openapi": "3.0.0",
   "info": {
-      "title": "Breaking News API Documentation",
-      "description": "In this documentation you will be able to consult the API end-points and also test all available routes. Do not forget to register and carry out the authorization.",
-      "contact": {
-          "email": "nribeiro.projetos@gmail.com"
-      },
-      "version": "1.0.0"
+    "title": "Breaking News API Documentation",
+    "description": "In this documentation you will be able to consult the API end-points and also test all available routes. Do not forget to register and carry out the authorization.",
+    "contact": {
+        "email": "nribeiro.projetos@gmail.com"
+    },
+    "version": "1.0.0"
   },
   "servers": [
-      {
-          "url": "http://localhost:3000",
-          "description": "Local Server"
-      }
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Server"
+    },
+    {
+      "url": "https://api-breakingnews-w63s.onrender.com",
+      "description": "Render Server"
+    }
   ],
   "paths": {
     "/user": {
