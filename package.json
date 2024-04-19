@@ -2,11 +2,11 @@
   "name": "application-iii---breakingnews",
   "version": "1.0.0",
   "description": "API for SPA Breaking News",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "Nicolas Costa Ribeiro",

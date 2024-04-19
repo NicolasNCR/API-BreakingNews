@@ -6,11 +6,11 @@ import userController from '../controllers/user.controller.js';
 import { validId, validUser } from '../middlewares/global.middlewares.js';
 
 // Routes
-const router = Router();
+const userRouter = Router();
 
-router.post('/', userController.create);
-router.get('/', userController.findAll);
-router.get('/:id', validId, validUser, userController.findById);
-router.patch('/update/:id', validId, validUser, userController.update);
+userRouter.post('/', userController.create);
+userRouter.get('/', userController.findAll);
+userRouter.get('/:id', validId, validUser, userController.findById);
+userRouter.patch('/update/:id', validId, validUser, userController.update);
 
-export default router;
+export default userRouter;
