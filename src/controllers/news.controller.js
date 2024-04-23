@@ -52,6 +52,8 @@ export const findAll = async (req, res) => {
             return res.send(400).send({ message: "There are no registered news" });
         }
 
+        news.shift(); // exclui a última notícia adicionada (ela será utilizada na rota de top news)
+
         res.send({
             nextUrl,
             previousUrl,

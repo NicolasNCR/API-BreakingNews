@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node --no-warnings server.js",
+    "dev": "nodemon --no-warnings server.js"
   },
   "keywords": [],
   "author": "Nicolas Costa Ribeiro",
