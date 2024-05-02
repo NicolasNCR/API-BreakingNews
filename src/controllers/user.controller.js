@@ -1,4 +1,5 @@
 // Modules
+import { generateToken } from '../services/auth.service.js'
 import userService from '../services/user.service.js'
 
 const create = async (req, res) => {
@@ -15,16 +16,11 @@ const create = async (req, res) => {
             return res.status(400).send({ message: "Error creating User" })
         }
 
+        const token = generateToken(user.id);
+
         res.status(201).send({
             message: "User created successfully",
-            user: {
-                id: user._id,
-                name,
-                username,
-                email,
-                avatar,
-                background
-            }
+            token
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
