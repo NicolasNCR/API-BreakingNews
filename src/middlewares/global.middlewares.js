@@ -4,9 +4,15 @@ import userService from '../services/user.service.js';
 
 export const validId = (req, res, next) => {
     try {
-        const id = req.params.id;
+        let idParam;
+        if (!req.params.id) {
+          req.params.id = req.userId;
+          idParam = req.params.id;
+        } else {
+          idParam = req.params.id;
+        }
 
-        if (!mongoose.Types.ObjectId.isValid(id)){
+        if (!mongoose.Types.ObjectId.isValid(idParam)){
             return res.status(400).send({ message: "Invalid ID" });
         }
 
@@ -26,7 +32,7 @@ export const validUser = async (req, res, next) => {
         }
 
         req.id = id;
-        req.user = user;
+        req.user = user;    
 
         next();
     } catch (err) {

@@ -43,7 +43,36 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
     try {
-        const user = req.user;
+        // const user = await userService.findByIdService(
+        //     req.params.id,
+        //     req.userId
+        //   ); 
+        let idParam;
+        let userIdParam = req.params.id;
+        let userIdLogged = req.userId;
+
+        // console.log(userIdLogged)
+
+        if (!userIdParam) {
+            userIdParam = userIdLogged;
+            idParam = userIdParam;
+        } else {
+            idParam = userIdParam;
+        }
+
+        if (!idParam) {
+            res.send({ message: "Send an id in the parameters to search for the user" })
+        }
+        
+        const user = await userService.findByIdService(idParam);
+
+        if (!user) {
+            res.send({ message: "User not found" })
+        } 
+
+
+        // ORIGINAL
+        // const user = req.user;
     
         res.send(user);
     } catch (err) {
