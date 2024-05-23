@@ -1,4 +1,5 @@
 // Modules
+import bcrypt from 'bcrypt';
 import { generateToken } from '../services/auth.service.js'
 import userService from '../services/user.service.js'
 
@@ -82,20 +83,32 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const {name, username, email, password, avatar, background} = req.body;
+        const {name, username, email, password, newPassword, avatar, background} = req.body;
 
-        if (!name && !username && !email && !password && !avatar && !background) {
+        if (!name && !username && !email && !password && !avatar && !background && !newPassword) {
             res.status(400).send({message: "Submit at least one field for update!"});
         }
 
         const { id, user } = req;
 
+        if (password && newPassword) {
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (!isMatch) {
+                return res.status(400).send({message: "Current password is incorrect"});
+            }
+
+            // Hash the new password before saving
+            const salt = await bcrypt.genSalt(10);
+            req.body.password = await bcrypt.hash(newPassword, salt);
+        }
+        
         await userService.updateService(
             id,
             name,
             username,
             email, 
-            password,
+            req.body.password, // password
             avatar,
             background
         );
